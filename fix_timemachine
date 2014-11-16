@@ -1,0 +1,34 @@
+#!/bin/bash
+
+VOL="/Volumes/TMbackups/fuji_MACID_2013-02-06-205517.sparsebundle"
+
+echo chflags -R nouchg $VOL
+
+echo hdiutil attach -nomount -noverify -noautofsck $VOL
+
+echo Now Run:  tail -f /var/log/fsck_hfs.log
+
+echo Now Run:  hdiutil detch /dev/diskxs2
+
+cat <<EOF
+When complete, you need to edit an plist file within the sparsebundle
+that records the state of the backup. On the top level of the
+sparsebundle find a file called com.apple.TimeMachine.MachineID.plist.
+Edit it and remove these two nodes
+
+<key>RecoveryBackupDeclinedDate</key>
+<date>{whatever-the-date}</date>
+
+Finally you want to change
+
+<key>VerificationState</key>
+<integer>2</integer>
+
+to
+<key>VerificationState</key>
+<integer>0</integer>
+
+Now you can eject the network share and have Time Machine give it
+another go. After the (long) verification step, backups should proceed
+once again.
+EOF

@@ -1,0 +1,2 @@
+# Find files in a directory, ignoring subdirectories
+find . -depth -type f -maxdepth 1

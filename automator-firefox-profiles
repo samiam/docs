@@ -1,0 +1,13 @@
+Create an application on the dock that opens a different browser profile.
+
+* Run Automator
+
+* Choose Application
+
+* Choose Run Shell script
+
+* Change to /bin/sh
+
+* Type in command to open Firefox/Chrome with args you want eg.
+
+open -n -a Firefox --args -no-remote -P VR -jssh

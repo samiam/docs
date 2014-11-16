@@ -1,0 +1,4 @@
+#!/bin/sh
+# List all files in a directory, skipping subdirectories
+
+find . -type d \! -name . -prune -o -print | egrep -v '^\.$'

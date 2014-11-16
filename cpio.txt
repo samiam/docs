@@ -1,0 +1,4 @@
+# extract
+rpm2cpio file.rpm | cpio -i -d
+# list
+rpm2cpio file.rpm | cpio -t

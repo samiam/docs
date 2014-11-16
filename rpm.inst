@@ -1,0 +1,5 @@
+# When was the latest rpm installed
+rpm -qa --queryformat '%{INSTALLTIME} %{NAME}\n' | sort -n
+
+# To see the date really
+rpm -qa --queryformat '%{INSTALLTIME:date} %{NAME}\n
