@@ -1,12 +1,9 @@
 #!/bin/sh
-# Find when rpms were installed.
+# List when rpms were installed.
 #
 # rpm -q --querytags | sort
+# rpm -qa --queryformat='%{INSTALLTIME} %-30{NAME}%-20{INSTALLTIME:date}\n' | sort +0 -n
 
-#rpm -qa --queryformat='%{INSTALLTIME} %-30{NAME}%-20{INSTALLTIME:date}\n' | sort +0 -n
-
-rpm -qa --queryformat='%{INSTALLTIME}\t%{NAME}-%{VERSION}-%{RELEASE}\t%{INSTALLTIME:date}\n' | \
+rpm -qa --queryformat='%{INSTALLTIME}\t%{INSTALLTIME:date}\t%{NAME}-%{VERSION}-%{RELEASE}\n' | \
     sort -n | \
-    cut -d '	' -f2- | \
-    column -s '	' -t | \
-    cat
+    cut -f2-
