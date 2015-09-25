@@ -1,0 +1,16 @@
+# Print color code
+enscript -o out2.ps -2 -E -j -G -r --color
+
+# Print color code
+cat input | a2ps --prologue=color -g -E -2 -r -j -o - | ps2pdf - output.pdf
+a2ps --prologue=color -g -E -2 -r -j -o - * | ps2pdf - output.pdf
+
+#Get files to print on each virtual page
+
+a2ps -o out.ps -A virtual -2 -r --prologue=fixed --borders=yes \
+  configs/default.conf bin/* lib/PerlModule.pm
+
+ps2pdf out.ps
+
+# Merge two pdfs into one
+gs -dBATCH -dNOPAUSE -dPDFSETTINGS=/prepress -q -sDEVICE=pdfwrite -sOutputFile=finished2.pdf mozilla-3.pdf mozilla.pdf
